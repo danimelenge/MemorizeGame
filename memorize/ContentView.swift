@@ -14,6 +14,8 @@ struct ContentView: View {
 
     let weatherIcons = ["☀️", "⛅️", "☃️", "☔️", "🌪️", "❄️", "🌧️", "🌩️"].shuffled() + ["☀️", "⛅️", "☃️", "☔️", "🌪️", "❄️", "🌧️", "🌩️"].shuffled()
     @State var themeNumber = 1
+    @State private var animate = false
+
     var body: some View {
         VStack {
             Text("Memorize!").foregroundStyle(Color.purple).font(.largeTitle).bold()
@@ -31,6 +33,9 @@ struct ContentView: View {
             showBottomBars
         }
         .padding()
+        .onAppear {
+            animate = true
+        }
     }
 
     func showCard(by icon: [String], color: Color) -> some View {
@@ -44,12 +49,14 @@ struct ContentView: View {
         .foregroundColor(color)
     }
 
-    func showBottomBar (by number: Int , symbol: String, title: String) -> some View {
+    func showBottomBar(by number: Int, symbol: String, title: String) -> some View {
         VStack {
             Button(action: {
                 themeNumber = number
             }, label: {
                 Image(systemName: symbol)
+                    .scaleEffect(animate ? 1.2 : 1.0)
+                    .animation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: animate)
             })
             Text(title)
         }
@@ -69,15 +76,15 @@ struct ContentView: View {
     }
 
     var pets: some View {
-        showBottomBar(by: 1 ,symbol: "pawprint.circle.fill", title: "Pets").foregroundColor(.green)
+        showBottomBar(by: 1, symbol: "pawprint.circle.fill", title: "Pets").foregroundColor(.green)
     }
 
     var flowers: some View {
-        showBottomBar(by: 2 ,symbol: "camera.macro.circle.fill", title: "Flowers").foregroundColor(.pink)
+        showBottomBar(by: 2, symbol: "camera.macro.circle.fill", title: "Flowers").foregroundColor(.pink)
     }
 
     var weathers: some View {
-        showBottomBar(by: 3 ,symbol: "sun.horizon.circle.fill", title: "Weather").foregroundColor(.blue)
+        showBottomBar(by: 3, symbol: "sun.horizon.circle.fill", title: "Weather").foregroundColor(.blue)
     }
 }
 
