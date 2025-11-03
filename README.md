@@ -37,6 +37,7 @@ This project demonstrates concepts such as MVVM architecture, animation, state m
 <img width="405" alt="Screenshot 1" src="https://github.com/user-attachments/assets/0767b5ae-228a-4a69-bd78-75c0cc3d9115" />
 <img width="405" alt="Screenshot 2" src="https://github.com/user-attachments/assets/3636fb96-da50-4039-b9f5-46b35a0d5f09" />
 <img width="405" alt="Screenshot 3" src="https://github.com/user-attachments/assets/c7c342a3-bd00-40b7-a39a-b5f55e0a27bd" />
+<img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro - 2025-11-03 at 15 13 54" src="https://github.com/user-attachments/assets/6db24c1c-9645-41bb-bf9d-86a4df11b94f" />
 
 ---
 
