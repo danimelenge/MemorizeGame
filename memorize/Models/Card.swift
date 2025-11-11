@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Card<Content>: Identifiable where Content: Equatable {
+    var id = UUID()
+    var isFaceUp = false
+    var isMatched = false
+    var content: Content
+}
