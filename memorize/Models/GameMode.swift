@@ -9,17 +9,30 @@
 import Foundation
 
 enum GameMode: String, CaseIterable, Identifiable {
-    case easy = "Easy"
-    case normal = "Normal"
-    case hard = "Hard"
-    
-    var id: String { self.rawValue }
-    
-    var pairs: Int {
+    case easy
+    case medium
+    case hard
+
+    var id: String { rawValue }
+
+    /// Nombre legible para mostrar en la interfaz
+    var displayName: String {
         switch self {
-        case .easy: return 4
-        case .normal: return 8
-        case .hard: return 12
+        case .easy: return "Fácil"
+        case .medium: return "Medio"
+        case .hard: return "Difícil"
+        }
+    }
+
+    /// Número de pares de cartas según la dificultad
+    var numberOfPairs: Int {
+        switch self {
+        case .easy:
+            return 6
+        case .medium:
+            return 10
+        case .hard:
+            return 14
         }
     }
 }

@@ -5,38 +5,51 @@
 //  Created by Daniel Melenge Rojas on 25/02/25.
 //
 
-//
-//  ContentView.swift
-//  memorize
-//
-//  Created by Daniel Melenge Rojas on 25/02/25.
-//
 
 import SwiftUI
 
 struct ContentView: View {
+    // MARK: - ViewModel del juego
+    @StateObject private var viewModel = MemoryGameViewModel(
+        theme: GameTheme(
+            name: "Animales",
+            emojis: ["🐶", "🐱", "🐭", "🐰", "🐻", "🐸", "🦊", "🐵"],
+            color: .green, // ✅ Color corregido (ya no es String)
+            numberOfPairs: 8
+        ),
+        mode: .easy
+    )
+    
+    // MARK: - Propiedades existentes
     let petIcons = ["🫎", "🐹", "🐔", "🐠", "🐩", "🐿️", "🦌", "🐊"].shuffled() + ["🫎", "🐹", "🐔", "🐠", "🐩", "🐿️", "🦌", "🐊"].shuffled()
-
     let flowerIcons = ["🌺", "🌹", "🌻", "🌸", "🪷", "🍁", "🌼", "🍀"].shuffled() + ["🌺", "🌹", "🌻", "🌸", "🪷", "🍁", "🌼", "🍀"].shuffled()
-
     let weatherIcons = ["☀️", "⛅️", "☃️", "☔️", "🌪️", "❄️", "🌧️", "🌩️"].shuffled() + ["☀️", "⛅️", "☃️", "☔️", "🌪️", "❄️", "🌧️", "🌩️"].shuffled()
-    @State var themeNumber = 1
+    
+    @State private var themeNumber = 1
     @State private var animate = false
 
+    // MARK: - Vista principal
     var body: some View {
         VStack {
-            Text("Memorize!").foregroundStyle(Color.purple).font(.largeTitle).bold()
+            Text("Memorize!")
+                .foregroundStyle(Color.purple)
+                .font(.largeTitle)
+                .bold()
+            
+            // 🔹 Selector de dificultad
+            ModeSelectionView(viewModel: viewModel)
+                .padding(.bottom, 10)
+            
             ScrollView {
-                if (themeNumber == 1) {
+                if themeNumber == 1 {
                     showCard(by: petIcons, color: .green)
-                }
-                else if (themeNumber == 2) {
+                } else if themeNumber == 2 {
                     showCard(by: flowerIcons, color: .pink)
-                }
-                else {
+                } else {
                     showCard(by: weatherIcons, color: .blue)
                 }
             }
+
             showBottomBars
         }
         .padding()
@@ -45,17 +58,19 @@ struct ContentView: View {
         }
     }
 
+    // MARK: - Mostrar cartas
     func showCard(by icon: [String], color: Color) -> some View {
         let shuffledIcon = icon.shuffled()
         return LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
             ForEach(0..<shuffledIcon.count, id: \.self) { index in
-                    CardView(content: shuffledIcon[index])
-                        .aspectRatio(2/3, contentMode: .fit)
+                CardView(content: shuffledIcon[index])
+                    .aspectRatio(2/3, contentMode: .fit)
             }
         }
         .foregroundColor(color)
     }
 
+    // MARK: - Barra inferior (temas)
     func showBottomBar(by number: Int, symbol: String, title: String) -> some View {
         VStack {
             Button(action: {
@@ -95,9 +110,11 @@ struct ContentView: View {
     }
 }
 
+// MARK: - CardView
 struct CardView: View {
     let content: String
-    @State var isFaceUp: Bool = false
+    @State private var isFaceUp: Bool = false
+    
     var body: some View {
         ZStack(alignment: .center) {
             let base = RoundedRectangle(cornerRadius: 12)

@@ -13,6 +13,9 @@
 		1103A5262EC3DA5E0021861E /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1103A5252EC3DA5E0021861E /* GameMode.swift */; };
 		1103A5292EC3DB810021861E /* MemoryGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1103A5282EC3DB810021861E /* MemoryGameViewModel.swift */; };
 		1103A52B2EC3DBC70021861E /* ThemeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1103A52A2EC3DBC70021861E /* ThemeSelectionViewModel.swift */; };
+		110C90E72EC51C240095587D /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C90E62EC51C240095587D /* PersistenceService.swift */; };
+		110C90E92EC51C6C0095587D /* GameRulesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C90E82EC51C6C0095587D /* GameRulesService.swift */; };
+		110C90EB2EC51F0F0095587D /* ModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110C90EA2EC51F0F0095587D /* ModeSelectionView.swift */; };
 		1158CAA42D6E499F00906466 /* memorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158CAA32D6E499F00906466 /* memorizeApp.swift */; };
 		1158CAA62D6E499F00906466 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158CAA52D6E499F00906466 /* ContentView.swift */; };
 		1158CAA82D6E49A400906466 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1158CAA72D6E49A400906466 /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 		1103A5252EC3DA5E0021861E /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		1103A5282EC3DB810021861E /* MemoryGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameViewModel.swift; sourceTree = "<group>"; };
 		1103A52A2EC3DBC70021861E /* ThemeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectionViewModel.swift; sourceTree = "<group>"; };
+		110C90E62EC51C240095587D /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		110C90E82EC51C6C0095587D /* GameRulesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesService.swift; sourceTree = "<group>"; };
+		110C90EA2EC51F0F0095587D /* ModeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionView.swift; sourceTree = "<group>"; };
 		1158CAA02D6E499F00906466 /* memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1158CAA32D6E499F00906466 /* memorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memorizeApp.swift; sourceTree = "<group>"; };
 		1158CAA52D6E499F00906466 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,9 +73,20 @@
 		1103A52C2EC3E3720021861E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				110C90E52EC51BDB0095587D /* Services */,
 				1158CAA52D6E499F00906466 /* ContentView.swift */,
+				110C90EA2EC51F0F0095587D /* ModeSelectionView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		110C90E52EC51BDB0095587D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				110C90E62EC51C240095587D /* PersistenceService.swift */,
+				110C90E82EC51C6C0095587D /* GameRulesService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		1158CA972D6E499F00906466 = {
@@ -182,10 +199,13 @@
 				1158CAA62D6E499F00906466 /* ContentView.swift in Sources */,
 				1103A5292EC3DB810021861E /* MemoryGameViewModel.swift in Sources */,
 				1103A5202EC3D8760021861E /* Card.swift in Sources */,
+				110C90EB2EC51F0F0095587D /* ModeSelectionView.swift in Sources */,
 				1103A5262EC3DA5E0021861E /* GameMode.swift in Sources */,
 				1103A5242EC3D9FA0021861E /* MemoryGame.swift in Sources */,
 				1103A52B2EC3DBC70021861E /* ThemeSelectionViewModel.swift in Sources */,
 				1158CAA42D6E499F00906466 /* memorizeApp.swift in Sources */,
+				110C90E92EC51C6C0095587D /* GameRulesService.swift in Sources */,
+				110C90E72EC51C240095587D /* PersistenceService.swift in Sources */,
 				1103A5222EC3D8F20021861E /* GameTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
