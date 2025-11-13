@@ -20,6 +20,7 @@
 		1158CAA62D6E499F00906466 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158CAA52D6E499F00906466 /* ContentView.swift */; };
 		1158CAA82D6E49A400906466 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1158CAA72D6E49A400906466 /* Assets.xcassets */; };
 		1158CAAB2D6E49A400906466 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1158CAAA2D6E49A400906466 /* Preview Assets.xcassets */; };
+		1162DBF82EC6706E005C0551 /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162DBF72EC6706E005C0551 /* WhatsNewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		1158CAA52D6E499F00906466 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1158CAA72D6E49A400906466 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1158CAAA2D6E49A400906466 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1162DBF72EC6706E005C0551 /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				110C90E52EC51BDB0095587D /* Services */,
 				1158CAA52D6E499F00906466 /* ContentView.swift */,
 				110C90EA2EC51F0F0095587D /* ModeSelectionView.swift */,
+				1162DBF72EC6706E005C0551 /* WhatsNewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				1103A5202EC3D8760021861E /* Card.swift in Sources */,
 				110C90EB2EC51F0F0095587D /* ModeSelectionView.swift in Sources */,
 				1103A5262EC3DA5E0021861E /* GameMode.swift in Sources */,
+				1162DBF82EC6706E005C0551 /* WhatsNewView.swift in Sources */,
 				1103A5242EC3D9FA0021861E /* MemoryGame.swift in Sources */,
 				1103A52B2EC3DBC70021861E /* ThemeSelectionViewModel.swift in Sources */,
 				1158CAA42D6E499F00906466 /* memorizeApp.swift in Sources */,
