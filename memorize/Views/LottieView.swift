@@ -8,38 +8,26 @@
 import SwiftUI
 import Lottie
 
-/// UIViewRepresentable wrapper para Lottie en SwiftUI
 struct LottieView: UIViewRepresentable {
-    let name: String
-    var loopMode: LottieLoopMode = .playOnce
-    var contentMode: UIView.ContentMode = .scaleAspectFit
-
+    var filename: String
+    
     func makeUIView(context: Context) -> some UIView {
-        let containerView = UIView(frame: .zero)
-
-        let animation = LottieAnimation.named(name)
-        let animationView = LottieAnimationView(animation: animation)
-        animationView.contentMode = contentMode
-        animationView.loopMode = loopMode
+        let view = UIView(frame: .zero)
+        let animationView = LottieAnimationView(name: filename)
+        animationView.loopMode = .playOnce
+        animationView.play()
+        
         animationView.translatesAutoresizingMaskIntoConstraints = false
-
-        containerView.addSubview(animationView)
+        view.addSubview(animationView)
 
         NSLayoutConstraint.activate([
-            animationView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            animationView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            animationView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            animationView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
 
-        animationView.play { _ in
-            // opcional: acciones cuando termina
-        }
-
-        return containerView
+        return view
     }
-
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        // No-op
-    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
 }
+

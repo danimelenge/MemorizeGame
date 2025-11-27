@@ -10,7 +10,6 @@ import SwiftUI
 // MARK: - ContentView (Vista principal del juego)
 struct ContentView: View {
 
-    // MARK: - ViewModel principal del juego
     @StateObject private var viewModel = MemoryGameViewModel(
         theme: GameTheme(
             name: "Animales",
@@ -21,31 +20,24 @@ struct ContentView: View {
         mode: .easy
     )
 
-    // MARK: - Iconos para los temas (FIXME: mover a GameTheme)
-    // TODO: Crear ThemeService para evitar duplicación de iconos.
-    let petIcons = ["🫎", "🐹", "🐔", "🐠", "🐩", "🐿️", "🦌", "🐊"].shuffled() +
-                   ["🫎", "🐹", "🐔", "🐠", "🐩", "🐿️", "🦌", "🐊"].shuffled()
+    // MARK: - Iconos (FIXME: mover a GameTheme)
+    let petIcons = ["🫎","🐹","🐔","🐠","🐩","🐿️","🦌","🐊"].shuffled() +
+                   ["🫎","🐹","🐔","🐠","🐩","🐿️","🦌","🐊"].shuffled()
 
-    let flowerIcons = ["🌺", "🌹", "🌻", "🌸", "🪷", "🍁", "🌼", "🍀"].shuffled() +
-                      ["🌺", "🌹", "🌻", "🌸", "🪷", "🍁", "🌼", "🍀"].shuffled()
+    let flowerIcons = ["🌺","🌹","🌻","🌸","🪷","🍁","🌼","🍀"].shuffled() +
+                      ["🌺","🌹","🌻","🌸","🪷","🍁","🌼","🍀"].shuffled()
 
-    let weatherIcons = ["☀️", "⛅️", "☃️", "☔️", "🌪️", "❄️", "🌧️", "🌩️"].shuffled() +
-                       ["☀️", "⛅️", "☃️", "☔️", "🌪️", "❄️", "🌧️", "🌩️"].shuffled()
+    let weatherIcons = ["☀️","⛅️","☃️","☔️","🌪️","❄️","🌧️","🌩️"].shuffled() +
+                       ["☀️","⛅️","☃️","☔️","🌪️","❄️","🌧️","🌩️"].shuffled()
 
     // MARK: - Estados UI
     @State private var themeNumber = 1
     @State private var animate = false
     @State private var showWhatsNew = false
 
-    // MARK: - Vista PRINCIPAL
     var body: some View {
         NavigationStack {
-            VStack {
-                
-                // MARK: - Título
-                Text("Memorize!")
-                    .foregroundStyle(.purple)
-                    .font(.largeTitle.bold())
+            VStack(spacing: 10) {
 
                 // MARK: - Grid de cartas
                 ScrollView {
@@ -57,26 +49,45 @@ struct ContentView: View {
                         showCard(by: weatherIcons, color: .blue)
                     }
                 }
+                .padding(.top, 10)
 
                 // MARK: - Barra inferior con temas
                 showBottomBars
             }
-            .padding()
+            .padding(.horizontal)
             .onAppear { animate = true }
 
-            // MARK: - Botón para abrir WhatsNew
+            // MARK: - TOOLBAR (título + botón WhatsNew)
             .toolbar {
+
+                // ---- TÍTULO MEMORIZE EN LA TOOLBAR ----
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 6) {
+                        Text("Memorize")
+                            .font(.title3.bold())
+                            .foregroundColor(.purple.opacity(0.95))
+
+                        // (Opcional) icono decorativo
+                        Image(systemName: "brain.head.profile")
+                            .foregroundStyle(.purple.opacity(0.8))
+                            .imageScale(.medium)
+                    }
+                }
+
+                // ---- BOTÓN WHAT'S NEW ----
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showWhatsNew = true
                     } label: {
-                        Label("Qué hay de nuevo", systemImage: "info.circle.fill")
+                        Image(systemName: "info.circle.fill")
+                            .imageScale(.large)
+                            .foregroundColor(.purple)
                     }
-                    .tint(.purple)
                 }
             }
+
             .sheet(isPresented: $showWhatsNew) {
-                WhatsNewView() // TODO: Mejorar visualmente estilo Apple
+                WhatsNewView()
             }
         }
     }
@@ -86,9 +97,9 @@ struct ContentView: View {
         let shuffledIcon = icon.shuffled()
 
         return LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
-            ForEach(0..<shuffledIcon.count, id: \.self) { index in
+            ForEach(shuffledIcon.indices, id: \.self) { index in
                 CardView(content: shuffledIcon[index])
-                    .aspectRatio(2.0/3.0, contentMode: .fit) // FIXED
+                    .aspectRatio(2.0/3.0, contentMode: .fit)
             }
         }
         .foregroundColor(color)
@@ -98,7 +109,9 @@ struct ContentView: View {
     func showBottomBar(by number: Int, symbol: String, title: String) -> some View {
         VStack {
             Button {
-                themeNumber = number
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    themeNumber = number
+                }
             } label: {
                 Image(systemName: symbol)
                     .scaleEffect(animate ? 1.2 : 1.0)
@@ -123,10 +136,9 @@ struct ContentView: View {
             showBottomBar(by: 3, symbol: "sun.horizon.circle.fill", title: "Weather")
                 .foregroundColor(.blue)
         }
-        .padding(.horizontal)
         .padding(.vertical, 10)
-        .imageScale(.large)
         .font(.headline)
+        .imageScale(.large)
     }
 }
 
@@ -134,15 +146,15 @@ struct ContentView: View {
 // MARK: - CardView (Componente individual de carta)
 struct CardView: View {
     let content: String
-    @State private var isFaceUp: Bool = false  // TODO: Integrar con lógica real de juego
+    @State private var isFaceUp = false
 
     var body: some View {
-        ZStack(alignment: .center) {
+        ZStack {
             let base = RoundedRectangle(cornerRadius: 12)
 
             Group {
-                base.foregroundColor(.white)
-                base.strokeBorder(lineWidth: 2.0)
+                base.fill(.white)
+                base.strokeBorder(lineWidth: 2)
                 Text(content)
                     .font(.largeTitle)
             }
@@ -150,12 +162,11 @@ struct CardView: View {
 
             base.opacity(isFaceUp ? 0 : 1)
         }
-        .rotation3DEffect(
-            .degrees(isFaceUp ? 0 : 180),
-            axis: (x: 0, y: 1, z: 0)
-        )
+        .rotation3DEffect(.degrees(isFaceUp ? 0 : 180), axis: (0, 1, 0))
         .onTapGesture {
-            withAnimation { isFaceUp.toggle() }
+            withAnimation(.spring(response: 0.45, dampingFraction: 0.7)) {
+                isFaceUp.toggle()
+            }
         }
     }
 }
@@ -165,3 +176,4 @@ struct CardView: View {
 #Preview {
     ContentView()
 }
+
