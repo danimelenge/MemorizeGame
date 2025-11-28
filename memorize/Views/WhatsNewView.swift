@@ -7,34 +7,35 @@
 
 import SwiftUI
 
+// MARK: - Vista principal que muestra las novedades del juego
 struct WhatsNewView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss // FIXME: Considerar usar un binding externo si se reutiliza la vista
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 32) {
 
-                    // 🧠 Icono grande central
+                    // MARK: - Icono grande principal
                     Image(systemName: "brain.head.profile")
-                        .font(.system(size: 90))
+                        .font(.system(size: 90)) // FIXME: Ajustar tamaño dinámicamente si se desea accesibilidad
                         .symbolRenderingMode(.hierarchical)
                         .foregroundStyle(.purple)
                         .padding(.top, 20)
 
-                    // Título principal
+                    // MARK: - Título principal
                     Text("Bienvenido a Memorize")
                         .font(.largeTitle.bold())
                         .padding(.top, 4)
 
-                    // Subtítulo
+                    // MARK: - Subtítulo descriptivo
                     Text("Descubre las novedades y aprende cómo jugar este clásico juego de memoria.")
                         .font(.title3)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal)
 
-                    // 🔥 Tarjeta estilo Apple
+                    // MARK: - Tarjeta con características nuevas
                     VStack(alignment: .leading, spacing: 20) {
 
                         featureItem(
@@ -64,12 +65,12 @@ struct WhatsNewView: View {
                     }
                     .padding()
                     .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 22))
+                    .clipShape(RoundedRectangle(cornerRadius: 22)) // FIXME: Considerar animación al aparecer
                     .padding(.horizontal)
 
-                    // Botón principal estilo Apple
+                    // MARK: - Botón para cerrar y empezar el juego
                     Button {
-                        dismiss()
+                        dismiss() // FIXME: Confirmar si debe ejecutar lógica adicional antes de cerrar
                     } label: {
                         Text("Empezar a jugar")
                             .font(.headline)
@@ -89,20 +90,21 @@ struct WhatsNewView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cerrar") { dismiss() }
+                    Button("Cerrar") { dismiss() } // FIXME: Podría reemplazarse por un icono para consistencia visual
                         .bold()
                 }
             }
         }
     }
 
-    // MARK: - Apple Feature Item
+    // MARK: - Vista para ítems individuales de características
     @ViewBuilder
     func featureItem(icon: String, title: String, description: String) -> some View {
         HStack(alignment: .top, spacing: 14) {
 
+            // MARK: - Icono de cada feature
             Image(systemName: icon)
-                .font(.system(size: 30))
+                .font(.system(size: 30)) // FIXME: Adaptar a Dynamic Type
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.purple)
 
@@ -121,3 +123,6 @@ struct WhatsNewView: View {
 #Preview {
     WhatsNewView()
 }
+
+// MARK: - COMMIT SUGERIDO PARA GITHUB
+// "Agrega comentarios, anotaciones MARK y FIXMEs a WhatsNewView para mejorar la mantenibilidad y organización del código"
